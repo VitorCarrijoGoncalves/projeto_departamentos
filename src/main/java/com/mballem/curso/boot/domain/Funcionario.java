@@ -1,9 +1,14 @@
 package com.mballem.curso.boot.domain;
 
 import java.math.BigDecimal;
+import org.springframework.format.annotation.NumberFormat.Style;
 import java.time.LocalDate;
 
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.format.annotation.NumberFormat;
 
 @SuppressWarnings("serial")
 @Entity
@@ -13,13 +18,16 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(nullable = false, unique = true)
 	private String nome;
 	
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
 	private BigDecimal salario;
 	
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_entrada", nullable = false, columnDefinition = "DATE")
 	private LocalDate dataEntrada;
 	
-	@Column(name = "data_sainda", nullable = true, columnDefinition = "DATE")
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name = "data_saida", nullable = true, columnDefinition = "DATE")
 	private LocalDate dataSaida;
 	
 	// Cascade.All vai quando for inserir um funcionário, inserir também um endereço, da mesma forma para a exclusão
