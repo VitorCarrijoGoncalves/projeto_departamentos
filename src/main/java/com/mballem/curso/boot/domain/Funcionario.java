@@ -1,14 +1,20 @@
 package com.mballem.curso.boot.domain;
 
 import java.math.BigDecimal;
-import org.springframework.format.annotation.NumberFormat.Style;
 import java.time.LocalDate;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 @SuppressWarnings("serial")
 @Entity
@@ -18,8 +24,8 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(nullable = false, unique = true)
 	private String nome;
 	
-	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	private BigDecimal salario;
 	
 	@DateTimeFormat(iso = ISO.DATE)

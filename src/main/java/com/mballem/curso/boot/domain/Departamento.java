@@ -2,13 +2,21 @@ package com.mballem.curso.boot.domain;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
-@SuppressWarnings("serial")
+import org.hibernate.validator.constraints.NotBlank;
+
+@SuppressWarnings({ "serial", "deprecation" })
 @Entity
 @Table(name = "DEPARTAMENTOS")
 public class Departamento extends AbstractEntity<Long> {
 
+	@NotBlank(message = "informe um nome")
+	@Size(min = 3, max = 60, message = "O nome do departamento deve ter entre {min} e {max} caracteres.")
 	@Column(name = "nome", nullable = false, unique = true, length = 60)
 	private String nome;
 	

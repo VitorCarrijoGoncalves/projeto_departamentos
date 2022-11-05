@@ -16,7 +16,7 @@ public class DemoMvcApplication {
 	}
 	
 	@Bean
-	public LocaleResolver localResolver() {
+	public LocaleResolver localeResolver() {
 		return new FixedLocaleResolver(new Locale("pt", "BR"));
 	}
 	
