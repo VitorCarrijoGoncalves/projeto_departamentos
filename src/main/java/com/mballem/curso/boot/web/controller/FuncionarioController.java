@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,7 @@ import com.mballem.curso.boot.domain.Funcionario;
 import com.mballem.curso.boot.domain.UF;
 import com.mballem.curso.boot.service.CargoService;
 import com.mballem.curso.boot.service.FuncionarioService;
+import com.mballem.curso.boot.web.validator.FuncionarioValidator;
 
 @Controller
 @RequestMapping(value = "/funcionarios")
@@ -30,6 +33,11 @@ public class FuncionarioController {
 	
 	@Autowired
 	private CargoService cargoService;
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(new FuncionarioValidator());
+	}
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Funcionario funcionario) {
