@@ -41,12 +41,12 @@ public class FuncionarioController {
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Funcionario funcionario) {
-		return "/funcionario/cadastro";
+		return "funcionario/cadastro";
 	}
 	
 	@GetMapping("/listar")
 	public String listar() {
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 	
 	@PostMapping("/salvar")
@@ -59,7 +59,7 @@ public class FuncionarioController {
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap modelMap) {
 		modelMap.addAttribute("funcionario", funcionarioService.buscarPorId(id));
-		return "/funcionario/cadastro";
+		return "funcionario/cadastro";
 	}
 	
 	@PostMapping("/editar")
@@ -78,13 +78,13 @@ public class FuncionarioController {
 	
 	public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.buscarPorNome(nome));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 	
 	@GetMapping("/buscar/cargo")
 	public String getPorCargo(@RequestParam("id") Long id, ModelMap modelMap) {
 		modelMap.addAttribute("funcionarios", funcionarioService.buscarPorCargo(id));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 	
 	@GetMapping("/buscar/data")
@@ -93,7 +93,7 @@ public class FuncionarioController {
 			@RequestParam("saida") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate saida,
 			ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.buscarPorDatas(entrada, saida));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 	
 	@ModelAttribute("cargos")
