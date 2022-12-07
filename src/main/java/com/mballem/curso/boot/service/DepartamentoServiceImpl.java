@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mballem.curso.boot.dao.DepartamentoDao;
 import com.mballem.curso.boot.domain.Departamento;
+import com.mballem.curso.boot.util.PaginacaoUtil;
 
 @Service
 public class DepartamentoServiceImpl implements DepartamentoService {
@@ -51,6 +52,11 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 			return false;			
 		}
 		return true;
+	}
+	
+	@Override
+	public PaginacaoUtil<Departamento> buscaPorPagina(int pagina, String direcao) {
+		return dao.buscaPaginada(pagina, direcao);
 	}
 
 }

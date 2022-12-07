@@ -32,6 +32,20 @@ public class DepartamentoController {
 		model.addAttribute("departamentos", service.buscarTodos());
 		return "departamento/lista";
 	}
+	/*
+	@GetMapping("/listar")
+	public String listar(ModelMap model,
+			@RequestParam("page") Optional<Integer> page,
+			@RequestParam("dir") Optional<String> dir) {
+		
+		int paginaAtual = page.orElse(1);
+		String ordem = dir.orElse("asc");
+		
+		PaginacaoUtil<Departamento> pageDepartamento = service.buscarPorPagina(paginaAtual, ordem);
+		
+		model.addAttribute("pageDepartamento", pageDepartamento);
+		return "departamento/lista";
+	}*/
 	
 	@PostMapping("/salvar")
 	public String salvar(@Valid Departamento departamento, BindingResult result, RedirectAttributes attr) {

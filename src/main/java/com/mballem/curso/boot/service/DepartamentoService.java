@@ -3,6 +3,7 @@ package com.mballem.curso.boot.service;
 import java.util.List;
 
 import com.mballem.curso.boot.domain.Departamento;
+import com.mballem.curso.boot.util.PaginacaoUtil;
 
 public interface DepartamentoService {
 	
@@ -17,5 +18,7 @@ public interface DepartamentoService {
 	List<Departamento> buscarTodos();
 	
 	boolean departamentoTemCargos(Long id);
+	
+	PaginacaoUtil<Departamento> buscaPorPagina(int pagina, String direcao);
 
 }

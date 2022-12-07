@@ -66,10 +66,15 @@ public class CargoController {
 		
 	}
 	
-	@ModelAttribute("departamentos")
+	@ModelAttribute("pageDepartamento")
 	public List<Departamento> listaDeDepartamentos() {
 		return departamentoService.buscarTodos();
 	}
+	
+	//@ModelAttribute("departamentos")
+	//public List<Departamento> listaDeDepartamentos() {
+		//return departamentoService.buscarTodos();
+	//}
 	
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
